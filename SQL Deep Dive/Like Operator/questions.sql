@@ -14,7 +14,9 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Question: How many people's name start with A and end with R?
 * Expected output: 1846
 */
-
+select * 
+from employees
+where first_name ilike 'A%R';
                                                   
 /*
 * DB: Store
@@ -23,7 +25,9 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Expected output: 4211 
 */
 
-
+select count(*)
+from customers
+where zip :: "text" like '%2%'
 
 /*
 * DB: Store
@@ -32,6 +36,9 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Expected output: 109 
 */
 
+select count(*)
+from customers
+where zip :: "text" like '2_1%'
 
 /*
 * DB: Store
@@ -41,3 +48,6 @@ SELECT ..., EXTRACT (YEAR FROM AGE(birth_date)) as "age" FROM employees;
 * Expected output: https://imgur.com/AVe6G4c
 */
 
+select *, COALESCE(phone, 'No Phone')
+from customers
+where phone :: "text" like '302%'
